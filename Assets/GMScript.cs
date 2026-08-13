@@ -46,8 +46,8 @@ public class GMScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dataText.text = dataC.ToString();
-        cryptoText.text = crypto.ToString();
+        dataText.text = "Data: " + dataC.ToString();
+        cryptoText.text = "Crypto: " + crypto.ToString();
         totalDataText.text = totalData.ToString() + "/50 Goal";
         bossFightText.text = "Enemies Progress: " + eScore + "/100" + " Your Progress: " + pScore + "/100";
         if (pin == vCode && inHack == true)
@@ -58,7 +58,7 @@ public class GMScript : MonoBehaviour
             vCode = "";
             pin = "";
             inHack = false;
-        } else if (pin != vCode && true) {
+        } else if (pin.Length == help && pin != vCode && inHack == true) {
             Debug.Log("BADSOLVE");
             HackedScreen.SetActive(false);
             dataC -= 2;
