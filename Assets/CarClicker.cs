@@ -46,5 +46,6 @@ public class CarClicker : MonoBehaviour
         // transform.position = wayPoints[location].transform.position;
         transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
         GMScript.GetComponent<GMScript>().dataC += 1;
+        GMScript.GetComponent<GMScript>().totalData += 1;
     }
 }

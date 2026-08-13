@@ -13,9 +13,12 @@ public class GMScript : MonoBehaviour
     public GameObject UpgradeScreen;
     public GameObject HackedScreen;
     public GameObject ConversionScreen;
+    public GameObject BossFightScreen;
     public TextMeshProUGUI dataText;
     public TextMeshProUGUI cryptoText;
     public TextMeshProUGUI codeText;
+    public TextMeshProUGUI totalDataText;
+    public TextMeshProUGUI bossFightText;
     private int willV;
     private int amount;
     public string vCode;
@@ -23,8 +26,12 @@ public class GMScript : MonoBehaviour
     public int lo;
     public int help;
     private bool hackable;
+    public bool beated;
     public string pin;
-    public int totalCrypto;
+    public int totalData;
+
+    public int pScore;
+    public int eScore;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +44,8 @@ public class GMScript : MonoBehaviour
     {
         dataText.text = dataC.ToString();
         cryptoText.text = crypto.ToString();
+        totalDataText.text = totalData.ToString() + "/50 Goal";
+        bossFightText.text = "Enemies Progress: " + eScore + "/100" + " Your Progress: " + pScore + "/100";
         if (pin == vCode)
         {
             Debug.Log("HackedSolved");
@@ -44,6 +53,11 @@ public class GMScript : MonoBehaviour
             lo = 0;
             vCode = "";
             pin = "";
+        }
+
+        if (totalData >= 50 && beated == false)
+        {
+            BossFightScreen.SetActive(true);
         }
     }
 
@@ -87,6 +101,17 @@ public class GMScript : MonoBehaviour
     public void b3()
     {
         pin += "3";
+    }
+
+    public void fight()
+    {
+        pScore += 20;
+        eScore += UnityEngine.Random.RandomRange(1, 15);
+
+        if (pScore >= 100)
+        {
+            Debug.Log("PLAYER WINS");
+        }
     }
 
     public void ShowUpgrades()
