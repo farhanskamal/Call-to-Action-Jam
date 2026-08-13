@@ -35,6 +35,8 @@ public class GMScript : MonoBehaviour
     public int pScore;
     public int eScore;
 
+    public bool inHack = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,13 +50,22 @@ public class GMScript : MonoBehaviour
         cryptoText.text = crypto.ToString();
         totalDataText.text = totalData.ToString() + "/50 Goal";
         bossFightText.text = "Enemies Progress: " + eScore + "/100" + " Your Progress: " + pScore + "/100";
-        if (pin == vCode)
+        if (pin == vCode && inHack == true)
         {
             Debug.Log("HackedSolved");
             HackedScreen.SetActive(false);
             lo = 0;
             vCode = "";
             pin = "";
+            inHack = false;
+        } else if (pin != vCode && true) {
+            Debug.Log("BADSOLVE");
+            HackedScreen.SetActive(false);
+            dataC -= 2;
+            lo = 0;
+            vCode = "";
+            pin = "";
+            inHack = false;
         }
 
         if (totalData >= 50 && beated == false)
@@ -87,6 +98,7 @@ public class GMScript : MonoBehaviour
             Debug.Log("YOUR HACKED");
             codeText.text = vCode;
             HackedScreen.SetActive(true);
+            inHack = true;
         }
     }
 
