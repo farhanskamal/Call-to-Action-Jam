@@ -10,10 +10,12 @@ public class GMScript : MonoBehaviour
     public int dataC;
     public int crypto;
     public GameObject clicker;
+    public GameObject StartScreen;
     public GameObject UpgradeScreen;
     public GameObject HackedScreen;
     public GameObject ConversionScreen;
     public GameObject BossFightScreen;
+    public GameObject winScreen;
     public TextMeshProUGUI dataText;
     public TextMeshProUGUI cryptoText;
     public TextMeshProUGUI codeText;
@@ -111,7 +113,14 @@ public class GMScript : MonoBehaviour
         if (pScore >= 100)
         {
             Debug.Log("PLAYER WINS");
+            beated = true;
+            winScreen.SetActive(true);
         }
+    }
+
+    public void StartE()
+    {
+        StartScreen.SetActive(false);
     }
 
     public void ShowUpgrades()
